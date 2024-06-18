@@ -3,7 +3,7 @@ using System.Security.Cryptography;
 
 public class CertificateGenerator
 {
-    public static void Main()
+    public static void Run()
     {
         var cert = GenerateSelfSignedCertificate("CN=MyRSACertificate");
         File.WriteAllBytes("my_rsa_cert.pfx", cert.Export(X509ContentType.Pfx, "password"));

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Text;
-using System.Security.Cryptography;
-using System.Windows.Forms;
+﻿using System.Text;
+using PrivateMessaging;
+using 三十二位元整數 = System.Int32;
+using 字串 = System.String;
 
-//萬國碼加密
-public class Program
+public partial class Program
 {
     [STAThread] // 确保Main方法在单线程单元中运行，这是使用Clipboard类所需的
     public static void Main()
@@ -13,93 +12,48 @@ public class Program
         Console.OutputEncoding = Encoding.UTF8;
         Console.InputEncoding = Encoding.UTF8;
 
-
-        Console.WriteLine("请输入要加密的文本：");
-        string? 文本 = Console.ReadLine();
-        Console.WriteLine("请输入偏移量：");
-        bool 有問題 = !int.TryParse(Console.ReadLine(), out int 偏移量);
-        if (有問題)
+        do
         {
-            Console.WriteLine("偏移量必须是整数。");
-            return;
-        }
-        
-        string 加密后的文本 = UnicodeEncryption.Run(文本, 偏移量);
-        Clipboard.SetText(加密后的文本);
+            Console.WriteLine(提示.请输入要加密的文本);
+            string? 明文 = Console.ReadLine();
 
-        Console.WriteLine($"加密后的文本已复制到剪贴板：{加密后的文本}");
+            if (明文 is null)
+            {
+                Console.WriteLine(提示.文本不能为空);
+                return;
+            }
+
+            Console.WriteLine(提示.請選擇加密方式);
+            for (三十二位元整數 i = 1; i < 加密算法對照表.Count; i++)
+            {
+                Console.WriteLine($"{i}. {加密算法對照表[i].加密算法名}");
+            }
+            Console.WriteLine($"0. {加密算法對照表[0].加密算法名}");
+
+            bool 選擇有問題 = !三十二位元整數.TryParse(Console.ReadLine(), out 三十二位元整數 選擇);
+            if (選擇有問題)
+            {
+                Console.WriteLine(提示.選擇必须是整数);
+                return;
+            }
+            if (選擇 == 0)
+            {
+                Console.WriteLine(提示.退出成功);
+                return;
+            }
+            string 密文 = 加密算法對照表[選擇].加密算法函數(明文);
+            Clipboard.SetText(密文);
+            Console.WriteLine($"{提示.加密后的文本已复制到剪贴板}{密文}");
+        }
+        while (true);
     }
 
-    public static class UnicodeEncryption
+    public static readonly Dictionary<三十二位元整數, (字串 加密算法名, Func<字串, 字串> 加密算法函數)> 加密算法對照表 = new()
     {
-        private static readonly char[] ChineseCharacters = GetChineseCharacterRange();
-
-        public static string Run(string? originalText, int offset)
-        {
-            if (string.IsNullOrWhiteSpace(originalText))
-            {
-                Console.WriteLine("文本不能为空。");
-                return string.Empty;
-            }
-            Console.WriteLine($"Original Text: {originalText}");
-
-            string encryptedText = Encrypt(originalText, offset);
-            Console.WriteLine($"Encrypted Text: {encryptedText}");
-
-            string decryptedText = Decrypt(encryptedText, offset);
-            Console.WriteLine($"Decrypted Text: {decryptedText}");
-
-            return encryptedText;
-        }
-
-        public static string Encrypt(string input, int offset)
-        {
-            StringBuilder encrypted = new StringBuilder();
-            foreach (char c in input)
-            {
-                int charCode = (int)c;
-                int encryptedCode = EncryptCharCode(charCode, offset);
-                encrypted.Append((char)encryptedCode);
-            }
-            return encrypted.ToString();
-        }
-
-        public static string Decrypt(string input, int offset)
-        {
-            StringBuilder decrypted = new StringBuilder();
-            foreach (char c in input)
-            {
-                int encryptedCode = (int)c;
-                int decryptedCode = DecryptCharCode(encryptedCode, offset);
-                decrypted.Append((char)decryptedCode);
-            }
-            return decrypted.ToString();
-        }
-
-        private static int EncryptCharCode(int charCode, int offset)
-        {
-            // 简单的偏移量加密方法
-            return charCode + offset;
-        }
-
-        private static int DecryptCharCode(int encryptedCode, int offset)
-        {
-            // 与加密时相同的偏移量
-            return encryptedCode - offset;
-        }
-
-        private static char[] GetChineseCharacterRange()
-        {
-            // 定义一个包含常用中文字符的范围
-            int start = 0x4E00; // '一' 的 Unicode 编码
-            int end = 0x9FFF;   // '龥' 的 Unicode 编码
-            char[] chars = new char[end - start + 1];
-            for (int i = start; i <= end; i++)
-            {
-                chars[i - start] = (char)i;
-            }
-            return chars;
-        }
-    }
+        {0, (提示.退出,s=>s)},
+        {1, (nameof(替換式密碼), 替換式密碼.Run)},
+        {2, (nameof(萬國碼密碼), 萬國碼密碼.Run)},
+        {3, (nameof(凱撒密碼), 凱撒密碼.Run)},
+    };
 }
  

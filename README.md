@@ -16,3 +16,18 @@ Public Key:b'-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgK
 
 Message should be 'Secret Message'
 ![Candy](candy.png)
+
+# Password Generator RFC
+
+RFC 972：Password Generator Protocol：该协议定义了一个基于TCP的密码生成服务，旨在为用户提供随机生成的密码。它强调了使用高随机性种子的重要性，并建议避免使用基于时间的种子。 
+RFC EDITOR
+
+RFC 4086：Randomness Requirements for Security：该文档提供了安全应用中随机数生成的指导原则，强调了高质量随机数在密码学中的关键作用。
+
+RFC 2898：PKCS #5: Password-Based Cryptography Specification Version 2.0：该标准描述了基于密码的加密方法，包括密钥派生函数PBKDF2，该函数常用于安全密码哈希。
+
+RFC 6238：Time-Based One-Time Password Algorithm (TOTP)：该RFC定义了基于时间的一次性密码算法，广泛用于双因素认证中。 
+
+....
+
+RFC ****: placeholder

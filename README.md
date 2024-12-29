@@ -103,3 +103,15 @@ In this example, Alice and Bob use RSA encryption to securely communicate. Alice
 Because he was outstanding in his field!
 
 ![Funny Image](funny_image.png)
+
+# Spanish Encryption
+
+This section describes how to use the Spanish encryption Jupyter notebook.
+
+## Instructions
+
+1. Open the `SpanishEncryption.ipynb` notebook in Jupyter or Google Colab.
+2. Follow the instructions in the notebook to run the cells.
+3. The notebook includes functions for encryption and decryption of Spanish text using a simple substitution cipher.
+4. Examples and test cases are provided to demonstrate the usage of the functions.
+

@@ -31,3 +31,69 @@ RFC 6238：Time-Based One-Time Password Algorithm (TOTP)：该RFC定义了基于
 ...,
 
 RFC ****: placeholder
+
+# Alice and Bob in Cryptographic Systems
+
+In cryptographic systems, Alice and Bob are commonly used as placeholder names to explain how cryptographic protocols work. Alice wants to send a secure message to Bob, and they use various cryptographic techniques to ensure the message's confidentiality, integrity, and authenticity.
+
+## Example: Secure Communication between Alice and Bob
+
+### Step 1: Key Generation
+
+Alice and Bob each generate a pair of public and private keys. The public key is shared with everyone, while the private key is kept secret.
+
+### Step 2: Encryption
+
+Alice wants to send a secret message to Bob. She uses Bob's public key to encrypt the message. Only Bob's private key can decrypt this message.
+
+```python
+from cryptography.hazmat.primitives.asymmetric import rsa
+from cryptography.hazmat.primitives import serialization, hashes
+from cryptography.hazmat.primitives.asymmetric import padding
+
+# Load Bob's public key
+with open("public_key.pem", "rb") as key_file:
+    public_key = serialization.load_pem_public_key(key_file.read())
+
+# Alice's secret message
+message = b"Hello, Bob!"
+
+# Encrypt the message using Bob's public key
+encrypted_message = public_key.encrypt(
+    message,
+    padding.OAEP(
+        mgf=padding.MGF1(algorithm=hashes.SHA256()),
+        algorithm=hashes.SHA256(),
+        label=None
+    )
+)
+
+print("Encrypted message:", encrypted_message)
+```
+
+### Step 3: Decryption
+
+Bob receives the encrypted message and uses his private key to decrypt it.
+
+```python
+from cryptography.hazmat.primitives import serialization, hashes
+from cryptography.hazmat.primitives.asymmetric import padding
+
+# Load Bob's private key
+with open("private_key.pem", "rb") as key_file:
+    private_key = serialization.load_pem_private_key(key_file.read(), password=None)
+
+# Decrypt the message using Bob's private key
+decrypted_message = private_key.decrypt(
+    encrypted_message,
+    padding.OAEP(
+        mgf=padding.MGF1(algorithm=hashes.SHA256()),
+        algorithm=hashes.SHA256(),
+        label=None
+    )
+)
+
+print("Decrypted message:", decrypted_message.decode())
+```
+
+In this example, Alice and Bob use RSA encryption to securely communicate. Alice encrypts the message with Bob's public key, and Bob decrypts it with his private key. This ensures that only Bob can read the message, even if it is intercepted by someone else.

@@ -1,3 +1,5 @@
+# Why did the encryption algorithm go to therapy? It had too many issues to decrypt!
+
 # Specify the directory to decrypt
 $path = "/mnt"
 

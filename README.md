@@ -97,3 +97,9 @@ print("Decrypted message:", decrypted_message.decode())
 ```
 
 In this example, Alice and Bob use RSA encryption to securely communicate. Alice encrypts the message with Bob's public key, and Bob decrypts it with his private key. This ensures that only Bob can read the message, even if it is intercepted by someone else.
+
+# Why did the scarecrow become a successful cryptographer?
+
+Because he was outstanding in his field!
+
+![Funny Image](funny_image.png)

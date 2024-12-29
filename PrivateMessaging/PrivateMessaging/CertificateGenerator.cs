@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿// Why did the encryption algorithm go to therapy? It had too many issues to decrypt!
+
+using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 
 public class CertificateGenerator

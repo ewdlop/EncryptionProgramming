@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿// Why did the encryption algorithm go to therapy? It had too many issues to decrypt!
+
+using System.Text;
 using PrivateMessaging;
 using 三十二位元整數 = System.Int32;
 using 字串 = System.String;

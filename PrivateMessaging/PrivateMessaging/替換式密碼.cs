@@ -1,4 +1,6 @@
-﻿using System;
+﻿// Why did the encryption algorithm go to therapy? It had too many issues to decrypt!
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

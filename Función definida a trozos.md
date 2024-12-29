@@ -2,14 +2,14 @@ Here's how to implement a **piecewise function** using different approaches: `sw
 
 ### Example Problem
 Define a piecewise function \( f(x) \) as follows:
-\[
+$$
 f(x) =
 \begin{cases} 
 x^2 & \text{if } x < 0, \\
 2x + 1 & \text{if } 0 \leq x \leq 10, \\
 3x - 5 & \text{if } x > 10.
 \end{cases}
-\]
+$$
 
 ---
 

@@ -1,4 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿// Why did the encryption algorithm go to therapy? It had too many issues to decrypt!
+
+// See https://aka.ms/new-console-template for more information
 using CommunityToolkit.Diagnostics;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;

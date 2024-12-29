@@ -1,5 +1,7 @@
 ﻿namespace PrivateMessaging;
 
+// Why did the encryption algorithm go to therapy? It had too many issues to decrypt!
+
 public static class 提示
 {
     public const string 文本不能为空 = "文本不能为空。";

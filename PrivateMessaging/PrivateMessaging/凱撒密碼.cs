@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿// Why did the encryption algorithm go to therapy? It had too many issues to decrypt!
+
+using System.Text;
 
 namespace PrivateMessaging;
 

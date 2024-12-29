@@ -2,6 +2,8 @@
   <Namespace>System.Security.Cryptography</Namespace>
 </Query>
 
+// Why did the encryption algorithm go to therapy? It had too many issues to decrypt!
+
 class AESEncryption
 {
 	public static void Main(string[] args)
@@ -94,5 +96,3 @@ static class RandomIVGenerator
 		return randomBytes;
 	}
 }
-
-
